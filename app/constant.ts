@@ -72,6 +72,7 @@ export enum ApiPath {
   ChatGLM = "/api/chatglm",
   DeepSeek = "/api/deepseek",
   SiliconFlow = "/api/siliconflow",
+  Nvidia = "/api/nvidia",
 }
 
 export enum SlotID {
@@ -130,6 +131,7 @@ export enum ServiceProvider {
   ChatGLM = "ChatGLM",
   DeepSeek = "DeepSeek",
   SiliconFlow = "SiliconFlow",
+  Nvidia = "Nvidia",
 }
 
 // Google API safety settings, see https://ai.google.dev/gemini-api/docs/safety-settings
@@ -156,6 +158,7 @@ export enum ModelProvider {
   ChatGLM = "ChatGLM",
   DeepSeek = "DeepSeek",
   SiliconFlow = "SiliconFlow",
+  NvidiaDeepSeek = "NvidiaDeepSeek",
 }
 
 export const Stability = {
@@ -650,6 +653,10 @@ const siliconflowModels = [
   "Pro/deepseek-ai/DeepSeek-V3",
 ];
 
+const nvidiaModels = [
+  "deepseek-ai/deepseek-r1",
+];
+
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
@@ -806,6 +813,17 @@ export const DEFAULT_MODELS = [
       sorted: 14,
     },
   })),
+  ...nvidiaModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "nvidia",
+      providerName: "Nvidia",
+      providerType: "nvidia",
+      sorted: 15,
+    },
+  })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
@@ -828,3 +846,5 @@ export const DEFAULT_GA_ID = "G-89WN60ZK2E";
 
 export const SAAS_CHAT_URL = "https://nextchat.club";
 export const SAAS_CHAT_UTM_URL = "https://nextchat.club?utm=github";
+
+export const NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1";

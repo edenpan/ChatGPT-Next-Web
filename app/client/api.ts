@@ -25,6 +25,8 @@ import { XAIApi } from "./platforms/xai";
 import { ChatGLMApi } from "./platforms/glm";
 import { SiliconflowApi } from "./platforms/siliconflow";
 
+import { NvidiaDeepSeekApi } from "./platforms/nvidia";
+
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
@@ -172,6 +174,9 @@ export class ClientApi {
         break;
       case ModelProvider.SiliconFlow:
         this.llm = new SiliconflowApi();
+        break;
+      case ModelProvider.NvidiaDeepSeek:
+        this.llm = new NvidiaDeepSeekApi();
         break;
       default:
         this.llm = new ChatGPTApi();
@@ -382,6 +387,8 @@ export function getClientApi(provider: ServiceProvider): ClientApi {
       return new ClientApi(ModelProvider.ChatGLM);
     case ServiceProvider.SiliconFlow:
       return new ClientApi(ModelProvider.SiliconFlow);
+    case ServiceProvider.Nvidia:
+      return new ClientApi(ModelProvider.NvidiaDeepSeek);
     default:
       return new ClientApi(ModelProvider.GPT);
   }

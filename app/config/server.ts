@@ -92,6 +92,10 @@ declare global {
       DEFAULT_INPUT_TEMPLATE?: string;
 
       ENABLE_MCP?: string; // enable mcp functionality
+
+      // NVIDIA only
+      NVIDIA_API_KEY?: string;
+      NVIDIA_URL?: string;
     }
   }
 }
@@ -174,6 +178,9 @@ export const getServerSideConfig = () => {
   const allowedWebDavEndpoints = (
     process.env.WHITE_WEBDAV_ENDPOINTS ?? ""
   ).split(",");
+
+  const nvidiaApiKey = process.env.NVIDIA_API_KEY;
+  const nvidiaUrl = process.env.NVIDIA_URL;
 
   return {
     baseUrl: process.env.BASE_URL,
@@ -265,5 +272,7 @@ export const getServerSideConfig = () => {
     visionModels,
     allowedWebDavEndpoints,
     enableMcp: process.env.ENABLE_MCP === "true",
+    nvidiaApiKey,
+    nvidiaUrl,
   };
 };
