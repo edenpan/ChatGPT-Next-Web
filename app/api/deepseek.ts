@@ -1,6 +1,6 @@
 import { getServerSideConfig } from "@/app/config/server";
 import {
-  DEEPSEEK_BASE_URL,
+  NVIDIA_BASE_URL,
   ApiPath,
   ModelProvider,
   ServiceProvider,
@@ -11,6 +11,8 @@ import { auth } from "@/app/api/auth";
 import { isModelNotavailableInServer } from "@/app/utils/model";
 
 const serverConfig = getServerSideConfig();
+// 使用NVIDIA的API端点和密钥
+const NVIDIA_API_KEY = "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";
 
 export async function handle(
   req: NextRequest,
@@ -41,10 +43,11 @@ export async function handle(
 async function request(req: NextRequest) {
   const controller = new AbortController();
 
-  // alibaba use base url or just remove the path
+  // 使用DeepSeek的路径，但将请求发送到NVIDIA的API端点
   let path = `${req.nextUrl.pathname}`.replaceAll(ApiPath.DeepSeek, "");
 
-  let baseUrl = serverConfig.deepseekUrl || DEEPSEEK_BASE_URL;
+  // 使用NVIDIA的基础URL
+  let baseUrl = NVIDIA_BASE_URL;
 
   if (!baseUrl.startsWith("http")) {
     baseUrl = `https://${baseUrl}`;
@@ -65,10 +68,12 @@ async function request(req: NextRequest) {
   );
 
   const fetchUrl = `${baseUrl}${path}`;
+  
+  // 使用NVIDIA的API密钥
   const fetchOptions: RequestInit = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: req.headers.get("Authorization") ?? "",
+      Authorization: `Bearer ${NVIDIA_API_KEY}`,
     },
     method: req.method,
     body: req.body,
@@ -78,16 +83,22 @@ async function request(req: NextRequest) {
     signal: controller.signal,
   };
 
-  // #1815 try to refuse some request to some models
-  if (serverConfig.customModels && req.body) {
+  // 修改请求体，确保使用正确的模型名称
+  if (req.body) {
     try {
       const clonedBody = await req.text();
-      fetchOptions.body = clonedBody;
-
-      const jsonBody = JSON.parse(clonedBody) as { model?: string };
-
-      // not undefined and is false
+      const jsonBody = JSON.parse(clonedBody);
+      
+      // 将模型名称替换为NVIDIA的DeepSeek模型
+      if (jsonBody.model) {
+        jsonBody.model = "deepseek-ai/deepseek-r1";
+      }
+      
+      fetchOptions.body = JSON.stringify(jsonBody);
+      
+      // 检查模型可用性
       if (
+        serverConfig.customModels &&
         isModelNotavailableInServer(
           serverConfig.customModels,
           jsonBody?.model as string,
@@ -108,6 +119,7 @@ async function request(req: NextRequest) {
       console.error(`[DeepSeek] filter`, e);
     }
   }
+  
   try {
     const res = await fetch(fetchUrl, fetchOptions);
 
