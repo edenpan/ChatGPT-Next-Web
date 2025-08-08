@@ -459,6 +459,7 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "gemini-pro-vision": "2023-12",
   "deepseek-chat": "2024-07",
   "deepseek-coder": "2024-07",
+  "gpt-5o": "2025-08",
 };
 
 export const DEFAULT_TTS_ENGINE = "OpenAI-TTS";
@@ -524,6 +525,7 @@ const openaiModels = [
   "chatgpt-4o-latest",
   "gpt-4o-mini",
   "gpt-4o-mini-2024-07-18",
+  "gpt-5o"
   "gpt-4-vision-preview",
   "gpt-4-turbo-2024-04-09",
   "gpt-4-1106-preview",
