@@ -587,7 +587,7 @@ const anthropicModels = [
 ];
 
 const baiduModels = [
-  // "ernie-4.0-turbo-8k",
+  "ernie-4.0-turbo-8k",
   // "ernie-4.0-8k",
   // "ernie-4.0-8k-preview",
   // "ernie-4.0-8k-preview-0518",
@@ -601,7 +601,7 @@ const baiduModels = [
 ];
 
 const bytedanceModels = [
-  // "Doubao-lite-4k",
+  "Doubao-lite-4k",
   // "Doubao-lite-32k",
   // "Doubao-lite-128k",
   // "Doubao-pro-4k",
@@ -624,7 +624,7 @@ const alibabaModes = [
 
 const tencentModels = [
   // "hunyuan-pro",
-  // "hunyuan-standard",
+  "hunyuan-standard",
   // "hunyuan-lite",
   // "hunyuan-role",
   // "hunyuan-functioncall",
@@ -633,7 +633,7 @@ const tencentModels = [
 ];
 
 const moonshotModels = [
-  // "moonshot-v1-auto",
+  "moonshot-v1-auto",
   // "moonshot-v1-8k",
   // "moonshot-v1-32k",
   // "moonshot-v1-128k",
@@ -646,7 +646,7 @@ const moonshotModels = [
 ];
 
 const iflytekModels = [
-  // "general",
+  "general",
   // "generalv3",
   // "pro-128k",
   // "generalv3.5",
@@ -684,7 +684,7 @@ const xAIModes = [
 ];
 
 const chatglmModels = [
-  // "glm-4-plus",
+  "glm-4-plus",
   // "glm-4-0520",
   // "glm-4",
   // "glm-4-air",
@@ -704,7 +704,7 @@ const chatglmModels = [
 ];
 
 const siliconflowModels = [
-  // "Qwen/Qwen2.5-7B-Instruct",
+  "Qwen/Qwen2.5-7B-Instruct",
   // "Qwen/Qwen2.5-72B-Instruct",
   // "deepseek-ai/DeepSeek-R1",
   // "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
@@ -721,7 +721,7 @@ const siliconflowModels = [
 ];
 
 const ai302Models = [
-//   "deepseek-chat",
+  "deepseek-chat",
 //   "gpt-4o",
 //   "chatgpt-4o-latest",
 //   "llama3.3-70b",
