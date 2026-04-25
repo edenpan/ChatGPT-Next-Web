@@ -386,7 +386,6 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "gpt-5": "2025-08",
   "gpt-5.2": "2025-08",
   "gpt-5.4": "2025-08",
-  "gpt-5.4-pro": "2025-08",
   "gpt-5.5": "2025-11",
   "deepseek-chat": "2024-07",
   "deepseek-v3": "2024-12",
@@ -484,7 +483,6 @@ const openaiModels = [
   "gpt-5-chat-2025-01-01-preview",
   "gpt-5.2",
   "gpt-5.4",
-  "gpt-5.4-pro",
   "gpt-5.5",
 ];
 
