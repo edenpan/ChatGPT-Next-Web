@@ -399,6 +399,7 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "claude-sonnet-4-20250514": "2025-09",
   "claude-opus-4-5": "2025-09",
   "claude-opus-4-6": "2025-09",
+  "claude-opus-4-7": "2025-09",
   "claude-opus-4-20250514": "2025-09",
   "claude-3-5-haiku-20241022": "2024-08",
   "claude-3-5-haiku-latest": "2024-08",
@@ -489,6 +490,7 @@ const anthropicModels = [
   "claude-opus-4",
   "claude-opus-4-5",
   "claude-opus-4-6",
+  "claude-opus-4-7",
   // Legacy Claude 3.5 / 3.7
   "claude-3-5-haiku-20241022",
   "claude-3-5-haiku-latest",
