@@ -352,6 +352,8 @@ export const DEEPSEEK_SUMMARIZE_MODEL = "deepseek-chat";
 
 export const KnowledgeCutOffDate: Record<string, string> = {
   default: "2021-09",
+  "gpt-4": "2023-12",
+  "gpt-4-0613": "2023-06",
   "gpt-4.1": "2024-06",
   "gpt-4.1-2025-04-14": "2024-06",
   "gpt-4.1-mini": "2024-06",
@@ -433,10 +435,15 @@ export const VISION_MODEL_REGEXES = [
   /vision/,
   /gpt-4o/,
   /gpt-4\.1/,
+  /gpt-4-turbo(?!.*preview)/,
   /gpt-5/,
+  /gpt-4-vision/,
   /claude.*[34]/,
+  /gemini/,
+  /learnlm/,
   /qwen-vl/,
   /qwen2-vl/,
+  /dall-e/,
   /o3/,
   /o4-mini/,
 ];
@@ -444,6 +451,8 @@ export const VISION_MODEL_REGEXES = [
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
 const openaiModels = [
+  "gpt-4",
+  "gpt-4-0613",
   "gpt-4.1",
   "gpt-4.1-2025-04-14",
   "gpt-4.1-mini",
