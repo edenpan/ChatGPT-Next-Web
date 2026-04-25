@@ -186,11 +186,14 @@ export class ClaudeApi implements LLMApi {
       model: modelConfig.model,
       max_tokens: modelConfig.max_tokens,
       // Anthropic API does not allow both temperature and top_p to be set
-      // Use temperature by default, only use top_p if temperature is at default value (1)
-      ...(modelConfig.temperature !== 1
-        ? { temperature: modelConfig.temperature }
-        : { top_p: modelConfig.top_p }
-      ),
+      // Claude 4.x models (opus-4-7, sonnet-4-5, etc.) do not support temperature/top_p parameters
+      // so we skip them for those models and only set max_tokens
+      ...(/claude-.*-4-/.test(modelConfig.model) ||
+      /claude-.*-4$/.test(modelConfig.model)
+        ? {}
+        : modelConfig.temperature !== 1
+          ? { temperature: modelConfig.temperature }
+          : { top_p: modelConfig.top_p }),
       // top_k: modelConfig.top_k,
       top_k: 5,
     };
