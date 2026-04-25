@@ -194,7 +194,9 @@ export class ClaudeApi implements LLMApi {
           ? { temperature: modelConfig.temperature }
           : { top_p: modelConfig.top_p }),
       // top_k: modelConfig.top_k,
-      top_k: modelConfig.model === "claude-opus-4-7" ? undefined : 5,
+      ...(modelConfig.model === "claude-opus-4-7"
+        ? {}
+        : { top_k: 5 }),
     };
 
     const path = this.path(Anthropic.ChatPath);
